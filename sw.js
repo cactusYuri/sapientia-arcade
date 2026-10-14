@@ -1,4 +1,4 @@
-const VERSION='sapientia-arcade-v1';const BASE=new URL('./',self.location.href).pathname;const FILES=['','index.html','style.css','app.js','assets/neon.jpg','games/neon-dungeon/index.html'];
+const VERSION='sapientia-arcade-v2';const BASE=new URL('./',self.location.href).pathname;const FILES=['','index.html','style.css','app.js','assets/neon.jpg','games/neon-dungeon/index.html'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(VERSION).then(cache=>cache.addAll(FILES.map(p=>BASE+p)))));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{for(const key of await caches.keys())if(key.startsWith('sapientia-arcade-')&&key!==VERSION)await caches.delete(key);await self.clients.claim()})()));
 self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting()});
