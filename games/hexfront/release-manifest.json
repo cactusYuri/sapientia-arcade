@@ -1,0 +1,128 @@
+{
+  "name": "HEXFRONT",
+  "version": "1.2.1",
+  "assetVersion": "513c49c419cc6932",
+  "saveMode": "localStorage",
+  "files": [
+    {
+      "path": ".nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assets/513c49c419cc6932/app.js",
+      "bytes": 58623,
+      "sha256": "c7c9d5095619c94c6d3147b2ff0cf0491838937174a41114cf8f2e019abcce99"
+    },
+    {
+      "path": "assets/513c49c419cc6932/art/enemies.webp",
+      "bytes": 494538,
+      "sha256": "f36f58c550da624f05a47db747fb1f86b492df73c646bb5768be74c1624c65a2"
+    },
+    {
+      "path": "assets/513c49c419cc6932/art/title.webp",
+      "bytes": 360714,
+      "sha256": "094e4db371fe7240ca192aff4d8ac7f5eed2fa760f84258cb9b3a5e66d2c6e98"
+    },
+    {
+      "path": "assets/513c49c419cc6932/art/towers.webp",
+      "bytes": 491220,
+      "sha256": "47b18085238a60134c144fd53156b79a40b97658975b4ff919ad95bf37f75403"
+    },
+    {
+      "path": "assets/513c49c419cc6932/art.js",
+      "bytes": 508,
+      "sha256": "2cc2474ca64b0a43e0967529f157b49ddd16be30890b196e8dfb79b91fdfec65"
+    },
+    {
+      "path": "assets/513c49c419cc6932/audio.js",
+      "bytes": 2629,
+      "sha256": "6e37b82eeaced5d89a0fbc44cc0c5e94c060d07837adc29bb0d047605ea75ff5"
+    },
+    {
+      "path": "assets/513c49c419cc6932/content.js",
+      "bytes": 12119,
+      "sha256": "3d4b7c2dc9b7803c4c2af242185dd364fcb33fe8ef8cd825ad796a5fe90dcfc0"
+    },
+    {
+      "path": "assets/513c49c419cc6932/engine.js",
+      "bytes": 21439,
+      "sha256": "4efd86d6be61ebf1f95ddbf3f009813e806e8e5cb499261abab43f8f88d633e9"
+    },
+    {
+      "path": "assets/513c49c419cc6932/english.js",
+      "bytes": 41336,
+      "sha256": "30531d37c53ccac157ded740b4867788689e7b598dd4135f5c3a21dde7dbc32f"
+    },
+    {
+      "path": "assets/513c49c419cc6932/fonts/licenses/NotoSansSC-OFL.txt",
+      "bytes": 4388,
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+    },
+    {
+      "path": "assets/513c49c419cc6932/fonts/licenses/Oxanium-OFL.txt",
+      "bytes": 4384,
+      "sha256": "fe17c0f2581d71b4e1ea7e636e7f4877c29223e11bb1dd1a871e8c3f2a86336b"
+    },
+    {
+      "path": "assets/513c49c419cc6932/fonts/licenses/Rajdhani-OFL.txt",
+      "bytes": 4373,
+      "sha256": "f62ef357d3a1c3d27edd35a6e1ba350e8a8d13499797964eeadefbf0b3b15d1f"
+    },
+    {
+      "path": "assets/513c49c419cc6932/fonts/noto-sans-sc-game-variable.woff2",
+      "bytes": 195400,
+      "sha256": "1db4f388ea02ea47f1439dd37322b6e56221d8cffd199151c5292699083a481d"
+    },
+    {
+      "path": "assets/513c49c419cc6932/fonts/oxanium-latin-variable.woff2",
+      "bytes": 15204,
+      "sha256": "9defde906e70a6dc7d46ac62770ae63e3e078ab3f73e86fdd2153ced2125b671"
+    },
+    {
+      "path": "assets/513c49c419cc6932/fonts/rajdhani-latin-medium.woff2",
+      "bytes": 21296,
+      "sha256": "f46c7b301a4ae23b83b6a5cf6ff84becf3162294586d20ee2ea54be700d3a732"
+    },
+    {
+      "path": "assets/513c49c419cc6932/fonts/README.txt",
+      "bytes": 3251,
+      "sha256": "e1a5a0b7af5cdcbc0facbb1b6c203e6dd7e56b79a23835c5a34da4685a601449"
+    },
+    {
+      "path": "assets/513c49c419cc6932/i18n.js",
+      "bytes": 5197,
+      "sha256": "218717b6b33fe9c89fce63228090e04243ff72b79664f07d20591d9355216cc2"
+    },
+    {
+      "path": "assets/513c49c419cc6932/levels.js",
+      "bytes": 1704,
+      "sha256": "3377743e977a210ae8749ed3946b700aeceda8bee7a61e7c4de4fb56bcf4cb5a"
+    },
+    {
+      "path": "assets/513c49c419cc6932/map-assets.js",
+      "bytes": 4221,
+      "sha256": "0bc031d17cb6ae7c3c783e92377a37e747713d831dd6eca511e394fce684c4d0"
+    },
+    {
+      "path": "assets/513c49c419cc6932/render.js",
+      "bytes": 22189,
+      "sha256": "4616357b35df3a89c237aabf6e80d5cb22a183ce1f0806c827dcc653ef8bfa1f"
+    },
+    {
+      "path": "assets/513c49c419cc6932/storage.js",
+      "bytes": 1651,
+      "sha256": "71da8ad8e28da2616cd113b50ecfe58bd1c9fd35141c1d6baed8c30de3a42b81"
+    },
+    {
+      "path": "assets/513c49c419cc6932/style.css",
+      "bytes": 49801,
+      "sha256": "7a1b0638a294574a4e1b61fe435999a17884cfb82463b5fc7bac62fa999c2176"
+    },
+    {
+      "path": "index.html",
+      "bytes": 8603,
+      "sha256": "ea03a55b7cb1a2c84ca5b2a2e5e9ae329fde121889736d63cced62bbf5dfefb1"
+    }
+  ]
+}

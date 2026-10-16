@@ -1,9 +1,72 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b1017"><title>Sapientia Arcade · 即刻开玩</title><link rel="stylesheet" href="./style.css"></head><body>
-<header><a class="brand" href="#"><span class="mark">S<span>+</span></span><span>SAPIENTIA<span class="subbrand">& LOVE / ARCADE</span></span></a><nav><a href="#library" data-i="games">游戏库</a><button id="lang">EN</button></nav></header>
-<main id="home"><section class="hero"><div class="hero-copy"><div class="eyebrow"><span class="dot"></span> INDEPENDENT WORLDS, ONE CLICK AWAY</div><h1 data-i="headline">给日常，<br>开一扇异世界的门。</h1><p class="intro" data-i="intro">不用安装，不用等。选一个世界，把下一局交给好奇心。</p><a class="primary" href="#library" data-i="explore">探索游戏 ↓</a><div class="small-features"><span data-i="free">免费游玩</span><span data-i="noads">无广告打断</span><span data-i="local">进度保存在本机</span></div></div><div class="hero-art"><div class="orb"></div><img src="./assets/neon.jpg" alt="NEON DUNGEON 像素英雄与机械守卫"><span class="art-label">WORLD 001 / NEON DUNGEON</span><span class="art-corner">✦</span></div></section>
-<section id="library"><div class="section-head"><div><span class="eyebrow">THE COLLECTION</span><h2 data-i="collection">你的下一场冒险</h2></div><span class="count">01 / 01</span></div><article class="game-card"><div class="game-cover"><img src="./assets/neon.jpg" alt="NEON DUNGEON"><span class="badge" data-i="featured">首发作品</span></div><div class="game-info"><div class="tags"><span>ROGUELITE</span><span data-i="single">单人 · 动作生存</span></div><h3>NEON<br><span>DUNGEON</span></h3><p data-i="desc">走进霓虹地牢，在敌潮中寻找生机。组合升级，挑战首领，让每一局都走得更远。</p><div class="play-row"><button class="primary" id="play" data-i="play">立即游玩 ↗</button><button class="text-btn" id="help" data-i="controls">操作指南</button></div><div class="game-meta"><span>KEYBOARD / TOUCH</span><span>v0.2.2</span></div></div></article></section>
-<section class="studio"><span class="eyebrow">SMALL STUDIO. BIG CURIOSITY.</span><h2 data-i="studio">为“再来一局”而创造。</h2><p data-i="studioDesc">Sapientia and Love 的独立游戏角落。这里收藏我们制作的世界，也给每一次新的想法留一个入口。</p><div class="cache-row"><span class="dot"></span><span id="cacheStatus" role="status">首次打开后，为下次冒险保存资源</span></div></section></main>
-<section id="player" hidden><div class="player-bar"><button id="back" data-i="back">← 返回游戏库</button><strong>NEON DUNGEON</strong><button id="full" data-i="full">全屏 ↗</button></div><div id="gameMount"></div><p class="player-hint" data-i="hint">WASD / 方向键移动 · P 暂停 · M 静音 · 手机使用屏幕摇杆</p></section>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1017">
+  <meta name="description" content="Sapientia and Love 的独立游戏角落。即刻游玩 NEON DUNGEON 与六域防线 HEXFRONT。">
+  <title>Sapientia Arcade · 即刻开玩</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./assets/catalog.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#library" data-i="skip">跳到游戏库</a>
+<header>
+  <a class="brand" href="#library" data-library-link><span class="mark">S<span>+</span></span><span>SAPIENTIA<span class="subbrand">& LOVE / ARCADE</span></span></a>
+  <nav aria-label="主导航"><a href="#library" data-library-link data-i="games">游戏库</a><button id="lang" type="button" aria-label="Switch to English">EN</button></nav>
+</header>
+<main id="home">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="dot"></span> INDEPENDENT WORLDS, ONE CLICK AWAY</div>
+      <h1 data-i="headline">给日常，<br>开一扇异世界的门。</h1>
+      <p class="intro" data-i="intro">不用安装，不用等。选一个世界，把下一局交给好奇心。</p>
+      <a class="primary" href="#library" data-i="explore">探索游戏 ↓</a>
+      <div class="small-features"><span data-i="free">免费游玩</span><span data-i="noads">无广告打断</span><span data-i="local">进度保存在本机</span></div>
+    </div>
+    <div class="hero-art"><div class="orb"></div><img src="./assets/neon.jpg" alt="NEON DUNGEON" width="512" height="384" fetchpriority="high"><span class="art-label">WORLD 001 / NEON DUNGEON</span><span class="art-corner" aria-hidden="true">✦</span></div>
+  </section>
+  <section id="library" tabindex="-1" aria-labelledby="collectionTitle">
+    <div class="section-head"><div><span class="eyebrow">THE COLLECTION</span><h2 id="collectionTitle" data-i="collection">你的下一场冒险</h2></div><span class="count" id="gameCount">02 / 02</span></div>
+    <div class="game-list">
+      <article class="game-card" data-game="neon-dungeon" aria-labelledby="neonTitle">
+        <div class="game-cover"><img src="./assets/neon.jpg" alt="NEON DUNGEON" loading="lazy" width="512" height="384"><span class="badge" data-game-copy="badge">首发作品</span></div>
+        <div class="game-info">
+          <div class="tags"><span>ROGUELITE</span><span data-game-copy="category">单人 · 动作生存</span></div>
+          <h3 id="neonTitle">NEON<br><span>DUNGEON</span></h3>
+          <p data-game-copy="description">走进霓虹地牢，在敌潮中寻找生机。组合升级，挑战首领，让每一局都走得更远。</p>
+          <div class="play-row"><button class="primary" id="play" type="button" data-play="neon-dungeon" data-i="play">立即游玩 ↗</button><button class="text-btn" id="help" type="button" data-help="neon-dungeon" data-i="controls">操作指南</button></div>
+          <div class="game-meta"><span>KEYBOARD / TOUCH</span><span data-version>v0.2.2</span></div>
+        </div>
+      </article>
+      <article class="game-card hexfront-card" data-game="hexfront" aria-labelledby="hexfrontTitle">
+        <div class="game-cover"><img src="./assets/hexfront.webp" alt="HEXFRONT" loading="lazy" width="1672" height="941"><span class="badge" data-game-copy="badge">六角策略</span></div>
+        <div class="game-info">
+          <div class="tags"><span>TOWER DEFENSE</span><span data-game-copy="category">单人 · 策略塔防</span></div>
+          <h3 id="hexfrontTitle"><span class="game-title-zh" data-i="hexfrontName">六域防线</span>HEXFRONT</h3>
+          <p data-game-copy="description">在六角战场上构筑防线，用炮塔与地形编织敌人的路线。挑战 24 场战役，探索远征与无尽模式，或亲手设计一张地图。</p>
+          <div class="play-row"><button class="primary" type="button" data-play="hexfront" data-i="play">立即游玩 ↗</button><button class="text-btn" type="button" data-help="hexfront" data-i="controls">操作指南</button></div>
+          <div class="game-meta"><span>MOUSE / KEYBOARD / TOUCH</span><span data-version>v1.2.1</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+  <section class="studio"><span class="eyebrow">SMALL STUDIO. BIG CURIOSITY.</span><h2 data-i="studio">为“再来一局”而创造。</h2><p data-i="studioDesc">Sapientia and Love 的独立游戏角落。这里收藏我们制作的世界，也给每一次新的想法留一个入口。</p><div class="cache-row"><span class="dot"></span><span id="cacheStatus" role="status">首次打开后，为下次冒险保存资源</span></div></section>
+</main>
+<section id="player" hidden aria-labelledby="playerTitle">
+  <div class="player-bar"><button id="back" type="button" data-i="back">← 返回游戏库</button><strong id="playerTitle">NEON DUNGEON</strong><div class="player-actions"><button id="full" type="button" data-i="full">全屏 ↗</button></div></div>
+  <div id="gameMount"></div>
+  <p class="player-hint" id="playerHint"></p>
+</section>
 <footer><span>SAPIENTIA & LOVE</span><span>HANDCRAFTED WORLDS · PLAY WITH CURIOSITY</span></footer>
-<dialog id="helpDialog"><button class="close" id="closeHelp" aria-label="关闭">×</button><span class="eyebrow">HOW TO PLAY</span><h2 data-i="controls">操作指南</h2><p data-i="instructions">电脑使用 WASD 或方向键移动；P 暂停，M 切换静音。手机使用屏幕上的虚拟摇杆。击败敌人、收集经验，选择升级并挑战下一波。</p><button class="primary" id="helpPlay" data-i="play">立即游玩 ↗</button></dialog>
-<div id="updateBanner" hidden role="status"><span data-i="update">新版已准备好，回到游戏库后即可更新。</span><button id="update" data-i="updateBtn">更新</button></div><script src="./app.js" defer></script></body></html>
+<dialog id="helpDialog" aria-labelledby="helpTitle" aria-describedby="helpGame">
+  <button class="close" id="closeHelp" type="button" aria-label="关闭">×</button>
+  <span class="eyebrow" id="helpGame">HOW TO PLAY</span>
+  <h2 id="helpTitle" data-i="controls">操作指南</h2>
+  <ul id="instructions"></ul>
+  <button class="primary" id="helpPlay" type="button" data-i="play">立即游玩 ↗</button>
+</dialog>
+<div id="updateBanner" hidden role="status"><span data-i="update">新版已准备好，回到游戏库后即可更新。</span><button id="update" type="button" data-i="updateBtn">更新</button></div>
+</body>
+</html>
