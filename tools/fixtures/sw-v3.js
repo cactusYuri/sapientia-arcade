@@ -1,0 +1,5 @@
+const VERSION='sapientia-arcade-v3';const BASE=new URL('./',self.location.href).pathname;const FILES=['','index.html','style.css','app.js','assets/neon.jpg','games/neon-dungeon/index.html'];
+self.addEventListener('install',event=>event.waitUntil(caches.open(VERSION).then(cache=>cache.addAll(FILES.map(p=>new Request(BASE+p,{cache:"reload"}))))));
+self.addEventListener('activate',event=>event.waitUntil((async()=>{for(const key of await caches.keys())if(key.startsWith('sapientia-arcade-')&&key!==VERSION)await caches.delete(key);await self.clients.claim()})()));
+self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting()});
+self.addEventListener('fetch',event=>{const u=new URL(event.request.url);if(event.request.method!=='GET'||u.origin!==self.location.origin||!u.pathname.startsWith(BASE))return;const rel=u.pathname.slice(BASE.length);if(!FILES.includes(rel))return;event.respondWith((async()=>{const cache=await caches.open(VERSION);const hit=await cache.match(u.pathname);if(hit)return hit;const response=await fetch(event.request);if(response.ok)await cache.put(u.pathname,response.clone());return response})())});

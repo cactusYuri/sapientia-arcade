@@ -1,10 +1,10 @@
 'use strict';
-importScripts('./assets/catalog.js');
-const VERSION = 'sapientia-arcade-v4';
+importScripts('./assets/catalog.3388f9cbc9e1.js');
+const VERSION = 'sapientia-arcade-v5-f281795164de';
 const PREFIX = 'sapientia-arcade-';
 const BASE = new URL('./', self.location.href).pathname;
 // Only the library shell is installed ahead of time. Game files arrive when played.
-const FILES = ['', 'index.html', 'style.css', 'app.js', 'assets/catalog.js', ...globalThis.ARCADE_GAMES.map(game => game.cover.slice(2))];
+const FILES = ['', 'index.html', 'style.ebfaea078729.css', 'app.0c3b54d882cc.js', 'assets/catalog.3388f9cbc9e1.js', ...globalThis.ARCADE_GAMES.map(game => game.cover.slice(2))];
 const GAMES = globalThis.ARCADE_GAMES.map(game => ({
   ...game,
   directory: new URL('./', new URL(game.path, self.location.href)).pathname,

@@ -6,11 +6,18 @@ import vm from 'node:vm';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const read = name => readFileSync(resolve(root, name), 'utf8');
-const catalogSource = read('assets/catalog.js');
+const html = read('index.html');
+const appPath = html.match(/src="\.\/(app\.[a-f0-9]{12}\.js)"/)[1];
+const stylePath = html.match(/href="\.\/(style\.[a-f0-9]{12}\.css)"/)[1];
+const catalogPath = html.match(/src="\.\/(assets\/catalog\.[a-f0-9]{12}\.js)"/)[1];
+const shellVersion = read('sw.js').match(/const VERSION = '([^']+)'/)[1];
+assert.equal(read(appPath), read('app.js'), 'Built application matches source');
+assert.equal(read(stylePath), read('style.css'), 'Built stylesheet matches source');
+assert.equal(read(catalogPath), read('assets/catalog.js'), 'Built catalog matches source');
+const catalogSource = read(catalogPath);
 const catalogContext = vm.createContext({});
 vm.runInContext(catalogSource, catalogContext);
 const games = catalogContext.ARCADE_GAMES;
-const html = read('index.html');
 const ids = [...html.matchAll(/<article[^>]+data-game="([^"]+)"/g)].map(match => match[1]);
 assert.equal(new Set(games.map(game => game.id)).size, games.length, 'Unique catalog IDs');
 assert.deepEqual(ids, Array.from(games, game => game.id), 'Catalog and cards agree');
@@ -74,7 +81,7 @@ class LocalRequest extends Request {
 const context = vm.createContext({
   self, caches, URL, Request: LocalRequest, Response,
   async fetch(request) { network.push(request); return new Response(`Network: ${request.url}`, { status: networkStatus }); },
-  importScripts(path) { assert.equal(path, './assets/catalog.js'); vm.runInContext(catalogSource, context); }
+  importScripts(path) { assert.equal(path, `./${catalogPath}`); vm.runInContext(catalogSource, context); }
 });
 vm.runInContext(read('sw.js'), context);
 async function event(type, values = {}) {
@@ -87,7 +94,7 @@ async function event(type, values = {}) {
 const request = (path, method = 'GET') => new Request(new URL(path, origin), { method });
 await event('install');
 assert.ok(installs.includes(`${base}index.html`));
-assert.ok(installs.includes(`${base}assets/catalog.js`));
+for (const path of [appPath, stylePath, catalogPath]) assert.ok(installs.includes(`${base}${path}`), 'Hashed shell file is precached');
 assert.ok(!installs.some(path => path.includes('/games/')), 'Install only caches shell');
 const currentGameCaches = games.map(game => `sapientia-arcade-game-${game.id}-${game.cacheVersion}`);
 assert.ok(!currentGameCaches.some(name => stores.has(name)), 'Games stay unloaded until played');
@@ -123,13 +130,15 @@ assert.equal((await event('fetch', { request: request(`${base}games/hexfront/quo
 writeFails = false;
 
 stores.set('sapientia-arcade-v3', new Map());
+stores.set('sapientia-arcade-v4', new Map());
 stores.set('sapientia-arcade-game-hexfront-old', new Map());
 stores.set('unrelated-app', new Map());
 await event('activate');
 assert.equal(claimed, 1);
-assert.ok(stores.has('sapientia-arcade-v4'));
+assert.ok(stores.has(shellVersion));
 assert.ok(stores.has('unrelated-app'), 'Other apps retain their cache');
 assert.ok(!stores.has('sapientia-arcade-v3'), 'Previous shell is invalidated');
+assert.ok(!stores.has('sapientia-arcade-v4'), 'Initial multi-game shell is invalidated');
 assert.ok(!stores.has('sapientia-arcade-game-hexfront-old'), 'Outdated game version is invalidated');
 for (const name of currentGameCaches) assert.ok(stores.has(name), 'Unchanged games retain their cache');
 openClients = [{ url: `${origin}${base}games/hexfront/index.html` }];
@@ -138,4 +147,23 @@ assert.equal(skipped, 0, 'An active game in any tab postpones the update');
 openClients = [{ url: `${origin}${base}` }];
 await event('message', { data: { type: 'SKIP_WAITING' } });
 assert.equal(skipped, 1, 'Update proceeds from the library');
-console.log(`PASS: ${games.length} games; relative links, bilingual catalog, shell-only install, lazy game caches, cache errors, version cleanup, safe update.`);
+// Replay the exact legacy v3 interception rule with stale cached assets.
+const legacyHandlers = new Map();
+const legacyContext = vm.createContext({
+  self: { ...self, addEventListener(type, handler) { legacyHandlers.set(type, handler); } },
+  caches, URL, Request: LocalRequest,
+  async fetch() { throw Error('Legacy cache hit was expected'); }
+});
+vm.runInContext(read('tools/fixtures/sw-v3.js'), legacyContext);
+const legacyCache = await caches.open('sapientia-arcade-v3');
+await legacyCache.put(`${base}app.js`, new Response('STALE V3 APP'));
+async function legacyFetch(path) {
+  let response;
+  legacyHandlers.get('fetch')({ request: request(path), respondWith(promise) { response = promise; } });
+  return response;
+}
+assert.equal(await (await legacyFetch(`${base}app.js?v=5`)).text(), 'STALE V3 APP', 'A query alone does not fix v3 interception');
+for (const path of [appPath, stylePath, catalogPath]) {
+  assert.equal(await legacyFetch(`${base}${path}`), undefined, 'New shell filenames bypass the installed v3 worker');
+}
+console.log(`PASS: ${games.length} games; relative links, bilingual catalog, shell-only install, lazy game caches, cache errors, version cleanup, safe update, v3 migration.`);

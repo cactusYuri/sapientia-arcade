@@ -6,7 +6,8 @@ import vm from 'node:vm';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const html = readFileSync(resolve(root, 'index.html'), 'utf8');
-const app = readFileSync(resolve(root, 'app.js'), 'utf8');
+const appPath = html.match(/src="\.\/(app\.[a-f0-9]{12}\.js)"/)[1];
+const app = readFileSync(resolve(root, appPath), 'utf8');
 const catalog = readFileSync(resolve(root, 'assets/catalog.js'), 'utf8');
 
 // A small DOM contract harness; real buttons/dialogs/iframes remain native in the page.
